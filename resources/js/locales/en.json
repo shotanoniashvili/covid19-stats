@@ -1,0 +1,33 @@
+{
+    "errors": {
+        "login": {
+            "email": {
+                "required": "Email field is required"
+            },
+            "password": {
+                "required": "Password field is required"
+            }
+        }
+    },
+    "login": {
+        "title": "Authenticate",
+        "email": "Email",
+        "password": "Password",
+        "login": "Login"
+    },
+    "logout": "Logout",
+    "dashboard": {
+        "title": "Dashboard",
+        "hi": "Hi",
+        "country-code": "Country code",
+        "country-name": "Country name",
+        "confirmed": "Confirmed",
+        "recovered": "Recovered",
+        "death": "Death"
+    },
+    "table": {
+        "keyword": "Keyword",
+        "reload": "Reload",
+        "loading": "Loading..."
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "errors": {
+        "login": {
+            "email": {
+                "required": "Email field is required"
+            },
+            "password": {
+                "required": "Password field is required"
+            }
+        }
+    },
+    "login": {
+        "title": "Authenticate",
+        "email": "Email",
+        "password": "Password",
+        "login": "Login"
+    },
+    "logout": "Logout",
+    "dashboard": {
+        "title": "პანელი",
+        "hi": "გამარჯობა",
+        "country-code": "ქვეყნის კოდი",
+        "country-name": "ქვეყნის დასახელება",
+        "confirmed": "დადასტურებული",
+        "recovered": "გამოჯანმრთელებული",
+        "death": "დაღუპული"
+    },
+    "table": {
+        "keyword": "საძიებო სიტყვა",
+        "reload": "განახლება",
+        "loading": "იტვირთება..."
+    }
+}
