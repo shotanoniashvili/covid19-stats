@@ -6,4 +6,8 @@ export default class AuthResource {
     user() {
         return axios.get('/api/user');
     }
+
+    logout() {
+        return axios.post('/api/logout')
+    }
 }

@@ -12,7 +12,9 @@ export default {
         setUser({state}, { user, token }){
             state.user = user
             state.token = token
-            localStorage.setItem('token', token)
+
+            if (token)
+                localStorage.setItem('token', token)
         }
     }
 }

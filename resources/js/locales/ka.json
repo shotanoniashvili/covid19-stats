@@ -2,20 +2,21 @@
     "errors": {
         "login": {
             "email": {
-                "required": "Email field is required"
+                "required": "გთხოვთ ჩაწეროთ ელ-ფოსტა"
             },
             "password": {
-                "required": "Password field is required"
+                "required": "გთხოვთ ჩაწეროთ პაროლი"
             }
         }
     },
     "login": {
-        "title": "Authenticate",
-        "email": "Email",
-        "password": "Password",
-        "login": "Login"
+        "title": "ავტორიზაცია",
+        "email": "ელ-ფოსტა",
+        "password": "პაროლი",
+        "login": "შესვლა"
     },
-    "logout": "Logout",
+    "logout": "გასვლა",
+    "loading": "იტვირთება...",
     "dashboard": {
         "title": "პანელი",
         "hi": "გამარჯობა",
@@ -28,6 +29,7 @@
     "table": {
         "keyword": "საძიებო სიტყვა",
         "reload": "განახლება",
-        "loading": "იტვირთება..."
+        "loading": "იტვირთება...",
+        "total-rows": "ჩანაწერების რაოდენობა"
     }
 }

@@ -18,10 +18,10 @@
                                     <div class="mr-15">
                                         <language-switcher />
                                     </div>
-                                    <router-link to="/logout"
-                                                 class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-gray-800 font-semibold hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 ">
+                                    <a @click="handleLogout"
+                                       class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-gray-800 font-semibold hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 ">
                                         {{ $t('logout') }}
-                                    </router-link>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -39,6 +39,9 @@
 
 <script>
 import { mapGetters } from "vuex";
+import AuthResource from "../api/authResource";
+
+const userResource = new AuthResource();
 
 export default {
     name: "Layout",
@@ -47,6 +50,17 @@ export default {
         ...mapGetters({
             user: 'auth/user'
         })
+    },
+
+    methods: {
+        handleLogout() {
+            userResource.logout()
+            .then(resp => {
+                localStorage.removeItem('token')
+                this.$store.dispatch('auth/setUser', { user: null, token: null })
+                window.location.reload()
+            })
+        }
     }
 }
 </script>

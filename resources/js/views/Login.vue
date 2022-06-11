@@ -1,34 +1,6 @@
 <template>
-<!--    <div class="container h-100">-->
-<!--        <div class="row h-100 align-items-center">-->
-<!--            <div class="col-12 col-md-6 offset-md-3">-->
-<!--                <div class="card shadow sm">-->
-<!--                    <div class="card-body">-->
-<!--                        <h1 class="text-center">{{ $t('login.title') }}</h1>-->
-<!--                        <hr/>-->
-<!--                        <form @submit.prevent="handleLogin" class="row" method="post">-->
-<!--                            <div class="form-group col-12">-->
-<!--                                <label for="email" class="font-weight-bold">{{ $t('login.email') }}</label>-->
-<!--                                <input type="text" v-model="form.email" name="email" id="email" class="form-control">-->
-<!--                            </div>-->
-<!--                            <div class="form-group col-12">-->
-<!--                                <label for="password" class="font-weight-bold">{{ $t('login.password') }}</label>-->
-<!--                                <input type="password" v-model="form.password" name="password" id="password" class="form-control">-->
-<!--                            </div>-->
-<!--                            <div class="col-12 mb-2">-->
-<!--                                <button :disabled="processing" type="submit" class="btn btn-primary btn-block">-->
-<!--                                    {{ processing ? $t('loading') : $t('login.login') }}-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </form>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
     <section class="h-screen">
-        <div class="container px-6 py-12 h-full">
+        <div class="container mx-auto px-6 py-12 h-full">
             <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
                 <div class="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
                     <img
@@ -79,6 +51,7 @@
 <script>
 import AuthResource from "../api/authResource";
 import { mapActions } from "vuex";
+import axios from "axios";
 
 const resource = new AuthResource();
 
@@ -105,7 +78,8 @@ export default {
             resource.login(this.form).then(resp => {
                 if (resp.data.user && resp.data.token) {
                     this.setUser(resp.data)
-                    this.$router.push('dashboard')
+                    axios.defaults.headers.common.Authorization = `Bearer ${resp.data.token}`
+                    this.$router.push({ name: 'dashboard' })
                 } else {
                     this.$helpers.errorMessage(resp)
                 }

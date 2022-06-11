@@ -16,6 +16,7 @@
         "login": "Login"
     },
     "logout": "Logout",
+    "loading": "Loading...",
     "dashboard": {
         "title": "Dashboard",
         "hi": "Hi",
@@ -28,6 +29,7 @@
     "table": {
         "keyword": "Keyword",
         "reload": "Reload",
-        "loading": "Loading..."
+        "loading": "Loading...",
+        "total-rows": "Total rows"
     }
 }

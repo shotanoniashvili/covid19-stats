@@ -2,6 +2,9 @@
     <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                <summary-data />
+            </div>
+            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                 <data-table :columns="columns" :data-provider="dataProvider" />
             </div>
         </div>
@@ -11,6 +14,7 @@
 <script>
 import CountryResource from "../api/countryResource";
 import DataTable from "../components/DataTable";
+import SummaryData from "../components/SummaryData";
 
 const resource = new CountryResource()
 

@@ -3,7 +3,7 @@ export default class CountryResource {
         return axios.get('/api/countries');
     }
 
-    country(countryId) {
-        return axios.get(`/api/countries/${countryId}`);
+    summary() {
+        return axios.get(`/api/summary`);
     }
 }

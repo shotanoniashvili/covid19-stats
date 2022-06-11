@@ -1,6 +1,8 @@
 <template>
     <div class="overflow-hidden">
         <div class="actions mb-5">
+
+            <div class="font-semibold mb-5">{{ $t('table.total-rows') }}: {{ total }}</div>
             <div class="flex justify-between">
                 <button  @click="handleReload" class="inline-block px-6 py-2.5 bg-blue-600 text-white
                              font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700
@@ -37,14 +39,15 @@
                 <th v-for="col of columns"
                     :key="col.col"
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-2">
+                    class="text-sm font-medium text-gray-900 px-6 py-2 position-relative">
                     {{ col.label }}
 
                     <div v-if="col.sortable" class="sort">
                         <span @click="handleSort(col.col)"
-                              class="sort-icon active">&#8638;</span>
-                        <span class="sort-icon">&#8642;</span>
-                        <span class="sort-icon">&#8645;</span>
+                              :class="['sort-icon',
+                              { active: order.col === col.col },
+                              { asc: order.col === col.col && order.by === 'asc' },
+                              { desc: order.col === col.col && order.by === 'desc' } ]"></span>
                     </div>
                 </th>
             </tr>
@@ -78,7 +81,7 @@ export default {
 
     computed: {
         total() {
-            return this.rows.length
+            return this.filteredRows.length
         }
     },
 
@@ -87,7 +90,10 @@ export default {
             rows: [],
             loading: false,
             keyword: '',
-            sort: null,
+            order: {
+                col: '',
+                by: ''
+            },
             filteredRows: []
         }
     },
@@ -117,11 +123,36 @@ export default {
                             return true
                     }
                 })
+                this.order = { col: '', by: '' }
             }
         },
 
-        handleSort() {
+        handleSort(col) {
+            if (this.order.col === col && this.order.by === 'asc') {
+                this.order = {
+                    col: col,
+                    by: 'desc'
+                }
+                this.filteredRows = _.sortBy(this.filteredRows, [col]).reverse()
+                return;
+            }
 
+            if (this.order.col === col && this.order.by === 'desc') {
+                this.order = {
+                    col: '',
+                    by: ''
+                }
+                this.filteredRows = _.sortBy(this.filteredRows, ['code'])
+                return;
+            }
+
+            if (this.order.col !== col) {
+                this.order = {
+                    col: col,
+                    by: 'asc'
+                }
+                this.filteredRows = _.sortBy(this.filteredRows, [col])
+            }
         },
 
         loadData() {
@@ -145,11 +176,30 @@ export default {
 </script>
 
 <style scoped>
+    .sort {
+        position: absolute;
+        right: 8px;
+        top: 8px;
+    }
+
     .sort-icon {
+        padding: 4px;
         cursor: pointer;
     }
 
     .sort-icon.active {
         color: #3fc3ee;
+    }
+
+    .sort-icon::after {
+        content: '⇅';
+    }
+
+    .sort-icon.active.asc::after {
+        content: '↾';
+    }
+
+    .sort-icon.active.desc::after {
+        content: '⇂';
     }
 </style>

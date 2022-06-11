@@ -7,7 +7,7 @@ import store from './store';
 import router from './router';
 import i18n from './i18n';
 import * as helpers from './helpers';
-import App from "./App";
+import App from "./App.vue";
 import VueSweetalert2 from "vue-sweetalert2";
 import axios from 'axios';
 
